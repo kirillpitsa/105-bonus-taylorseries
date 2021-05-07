@@ -7,7 +7,7 @@
 #include <time.h>
 
 #define ERROR_ARGC (-1);
-
+#define STOP 50
 
 double power(double e, uint64_t x){
     if (x == 0) {return 1;}
@@ -19,7 +19,7 @@ void ExpOst(double t, double eps){
     //Инициализация псевдорандома для остаточного члена
     srand(time(0));
     const float RAND_MAX_F = RAND_MAX;
-    double random = rand()/RAND_MAX_F;
+    double random = (double)rand()/RAND_MAX_F;
     
     double origexp = exp(t);
     double x;
@@ -37,7 +37,7 @@ void ExpOst(double t, double eps){
         a = a * fracx / i;
         i *= (i+1);
         counter++;
-        if (counter > 40) {break;}
+        if (counter > STOP) {break;}
     } while (fabs(a*exp(random*x) - eps) > DBL_EPSILON);
     double myexp = myexpfrac * myexpint;
     if (t < 0){myexp = 1.0/myexp;}
@@ -64,7 +64,7 @@ void ExpLast(double t, double eps){
         i *= (i+1);
         //printf("%f -> ", a);
         counter++;
-        if (counter > 20){break;}
+        if (counter > STOP){break;}
     } while (fabs(a - eps) > DBL_EPSILON);
     //printf("\nmyexpfrac = %f - %f\n", myexpfrac, exp(fracx));
     myexp = myexpfrac * myexpint;
@@ -117,7 +117,7 @@ void SinLast(double t, double eps){
             a = (-a * x*x)/((2*i)*(2*i-1));
             i++;
             counter++;
-            if (counter > 40){break;}
+            if (counter > STOP){break;}
         } while (fabs(a - eps) > DBL_EPSILON); 
     } 
     else //синус
@@ -128,7 +128,7 @@ void SinLast(double t, double eps){
             a = (-a * x*x)/((2*i)*(2*i+1));
             i++;
             counter++;
-            if (counter > 40){break;}
+            if (counter > STOP){break;}
         } while (fabs(a - eps) > DBL_EPSILON);
     }
     if (flag % 2 == 1){
@@ -145,7 +145,7 @@ void SinOst(double t, double eps){
     //Инициализация рандома
     srand(time(0));
     const float RAND_MAX_F = RAND_MAX;
-    double random = rand()/RAND_MAX_F;
+    double random = (double)rand()/RAND_MAX_F;
 
     double x;
     double origsin = sin(t);
@@ -186,7 +186,7 @@ void SinOst(double t, double eps){
             a = (-a * x*x)/((2*i)*(2*i-1));
             i++;
             counter++;
-            if (counter > 40){break;}
+            if (counter > STOP){break;}
         } while (fabs((a*x*sin(random*x)/(i+1)) - eps) > DBL_EPSILON); 
     } 
     else //синус
@@ -197,7 +197,7 @@ void SinOst(double t, double eps){
             a = (-a * x*x)/((2*i)*(2*i+1));
             i++;
             counter++;
-            if (counter > 40){break;}
+            if (counter > STOP){break;}
         } while (fabs((a*x*sin(random*x)/(i+1)) - eps) > DBL_EPSILON);
     }
     if (flag % 2 == 1){
