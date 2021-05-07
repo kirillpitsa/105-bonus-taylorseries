@@ -1,6 +1,6 @@
 CSOURCES := $(shell find . -name "*.c")
 CPPSOURCES := $(shell find . -name "*.cpp")
-CFLAGS := -Wall -Wextra -Wfloat-equal -O  -MMD -Wstrict-prototypes
+CFLAGS := -Wall -Wextra -Wfloat-equal -O  -MMD -Wstrict-prototypes -lm
 
 debug: CFLAGS := $(CFLAGS) -g
 all: CFLAGS := $(CFLAGS) -g -fsanitize=address -fsanitize=leak -fsanitize=undefined -fsanitize=null -fsanitize=bounds-strict -fstack-protector-all
