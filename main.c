@@ -9,13 +9,15 @@
 #define ERROR_ARGC (-1);
 #define STOP 50
 
-void printer(long int counter, double myfunc, double origfunc){
+void printer(long int counter, double myfunc, double origfunc)
+{
     printf("По модулю последнего члена: шагов %ld\nЗначение: %f  ~   "
            "%f\nМодуль разности с точной реализацией: %e\n",
            counter, myfunc, origfunc, origfunc - myfunc);
 }
 
-double randomize(void){
+double randomize(void)
+{
     srand(time(0));
     const float RAND_MAX_F = RAND_MAX;
     double random = (double)rand() / RAND_MAX_F;
@@ -108,7 +110,8 @@ void ExpLast(double t, double eps)
     printer(counter, myexp, origexp);
 }
 
-int flags(double *x){
+int flags(double *x)
+{
     int flag = 0; // sin = 0, -sin = 1, cos = 2, -cos = 3
     long int counter = 0;
     while (*x - M_PI / 2 > DBL_EPSILON) {
@@ -153,7 +156,6 @@ int flags(double *x){
     }
     return flag;
 }
-
 
 void SinLast(double t, double eps)
 {
