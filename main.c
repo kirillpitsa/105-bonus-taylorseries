@@ -60,7 +60,7 @@ void ExpOst(double t, double eps)
     do {
         myexpfrac += a;
         a = a * fracx / i;
-        i *= (i + 1);
+        i++;
         counter++;
         if (counter > STOP) {
             break;
@@ -95,7 +95,7 @@ void ExpLast(double t, double eps)
     do {
         myexpfrac += a;
         a = a * fracx / i;
-        i *= (i + 1);
+        i++;
         // printf("%f -> ", a);
         counter++;
         if (counter > STOP) {
