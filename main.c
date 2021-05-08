@@ -65,7 +65,7 @@ void ExpOst(double t, double eps)
         if (counter > STOP) {
             break;
         }
-    } while (fabs(a * exp(random * x) - eps) > DBL_EPSILON);
+    } while (fabs(a * exp(random * x)) - eps > DBL_EPSILON);
     double myexp = myexpfrac * myexpint;
     if (t < 0) {
         myexp = 1.0 / myexp;
@@ -101,7 +101,7 @@ void ExpLast(double t, double eps)
         if (counter > STOP) {
             break;
         }
-    } while (fabs(a - eps) > DBL_EPSILON);
+    } while (fabs(a) - eps > DBL_EPSILON);
     // printf("\nmyexpfrac = %f - %f\n", myexpfrac, exp(fracx));
     myexp = myexpfrac * myexpint;
     if (t < 0) {
@@ -186,7 +186,7 @@ void SinLast(double t, double eps)
             if (counter > STOP) {
                 break;
             }
-        } while (fabs(a - eps) > DBL_EPSILON);
+        } while (fabs(a) - eps > DBL_EPSILON);
     } else //синус
     {
         double a = x;
@@ -198,7 +198,7 @@ void SinLast(double t, double eps)
             if (counter > STOP) {
                 break;
             }
-        } while (fabs(a - eps) > DBL_EPSILON);
+        } while (fabs(a) - eps > DBL_EPSILON);
     }
     if (flag % 2 == 1) {
         myfunc = -myfunc;
@@ -239,7 +239,7 @@ void SinOst(double t, double eps)
             if (counter > STOP) {
                 break;
             }
-        } while (fabs((a * x * sin(random * x) / (i + 1)) - eps) > DBL_EPSILON);
+        } while (fabs((a * x * sin(random * x) / (i + 1))) - eps > DBL_EPSILON);
     } else //синус
     {
         double a = x;
@@ -251,7 +251,7 @@ void SinOst(double t, double eps)
             if (counter > STOP) {
                 break;
             }
-        } while (fabs((a * x * sin(random * x) / (i + 1)) - eps) > DBL_EPSILON);
+        } while (fabs((a * x * sin(random * x) / (i + 1))) - eps > DBL_EPSILON);
     }
     if (flag % 2 == 1) {
         myfunc = -myfunc;
